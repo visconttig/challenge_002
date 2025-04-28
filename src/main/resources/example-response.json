@@ -1,0 +1,19 @@
+{
+  "result":"success",
+  "documentation":"https://www.exchangerate-api.com/docs",
+  "terms_of_use":"https://www.exchangerate-api.com/terms",
+  "time_last_update_unix":1745798401,
+  "time_last_update_utc":"Mon, 28 Apr 2025 00:00:01 +0000",
+  "time_next_update_unix":1745884801,
+  "time_next_update_utc":"Tue, 29 Apr 2025 00:00:01 +0000",
+  "base_code":"USD",
+  "conversion_rates":{
+    "USD":1,
+    "CLP":935.3539,
+    "CNY":7.2902,
+    "EUR":0.8803,
+    "JPY":143.6909,
+    "MXN":19.5309,
+    "UYU":41.9523
+  }
+}
