@@ -3,17 +3,30 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        int chosenOption = 0;
+        int amountToConvert = 0;
 
         try (Scanner sc = new Scanner(System.in)) {
-            System.out.printf("Chosen option: %d.%n", showMenu(sc));
+            do {
+                chosenOption = showMenu(sc);
+                printMessage(String.format("\t\tChosen option: %d.%n", chosenOption));
+                // *** call to convertion logic ***
+                printMessage("Enter the amount to convert: ");
+                amountToConvert = askNumber(sc);
+                printMessage(String.format("\t\tAmount to convert: %d.%n", amountToConvert));
+                // ---> Convert
+                // Show currency valuation
+            } while (chosenOption != 7);
         } catch (IOException e){
-            System.out.printf("An error ocurred: %s.%n", e.getMessage());
+            printMessage(String.format("An error ocurred: %s.%n", e.getMessage()));
         }
 
     }
 
     public static int showMenu(Scanner sc) throws IOException {
-        var menu = String.format("*** Welcome to the Currency Converter App! ***%n" +
+        String header = "*".repeat(46);
+        var menu = String.format("%s%n%s%n%n" +
+                                         "*** Welcome to the Currency Converter App! ***%n" +
                                          "%n1) Dolar =>> Argentinian Peso%n" +
                                          "2) Argentinian Peso =>> Dolar%n" +
                                          "3) Dolar =>> Brazilian Royal%n" +
@@ -21,8 +34,17 @@ public class Main {
                                          "5) Dolar =>> Colombian Peso%n" +
                                          "6) Colombian Peso =>> Dolar%n" +
                                          "7) Exit %n%n" +
-                                         "Choose an option to continue: ");
-        System.out.print(menu);
+                                         "Choose an option to continue: ", header, header);
+        printMessage(menu);
+        return askNumber(sc);
+    }
+
+    public static int askNumber(Scanner sc) throws IOException {
         return sc.nextInt();
     }
+
+    public static void printMessage(String message){
+        System.out.print(message);
+    }
+
 }
