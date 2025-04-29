@@ -5,16 +5,17 @@ public class Main {
     public static void main(String[] args){
         int chosenOption = 0;
         int amountToConvert = 0;
+        CurrencyConverter cConverter = new CurrencyConverter();
 
         try (Scanner sc = new Scanner(System.in)) {
             do {
                 chosenOption = showMenu(sc);
                 printMessage(String.format("\t\tChosen option: %d.%n", chosenOption));
-                // *** call to convertion logic ***
                 printMessage("Enter the amount to convert: ");
                 amountToConvert = askNumber(sc);
                 printMessage(String.format("\t\tAmount to convert: %d.%n", amountToConvert));
                 // ---> Convert
+                cConverter.getHttpValue(); // for testing
                 // Show currency valuation
             } while (chosenOption != 7);
         } catch (IOException e){
