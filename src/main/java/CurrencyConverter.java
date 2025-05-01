@@ -16,19 +16,22 @@ public class CurrencyConverter {
            this.currency = currency;
        }
 
-       private void printEnviromentVariables(){
-           Map<String, String> env = System.getenv();
-           System.out.println("ENVIROMENT VARIABLES: ");
-           for(String envName : env.keySet()){
-               System.out.printf("%s=%s", envName, env.get(envName));
-           }
+
+       private String getApiKey(){
+        final String EXCHANGE_API_KEY = System.getenv("EXCHANGE_API_KEY");
+        if((System.getenv("TESTING_MODE").equalsIgnoreCase("true"))){
+            System.out.printf("####################################%n" +
+                                      "### API KEY: %s###.%n" +
+                                      "####################################%n",EXCHANGE_API_KEY);
+        }
+        return EXCHANGE_API_KEY;
        }
 
 
 
        public void getHttpValue(){
             try {
-                String EXCHANGE_API_KEY = System.getenv("EXCHANGE_API_KEY");
+                String EXCHANGE_API_KEY = getApiKey();
                 if(EXCHANGE_API_KEY != null){
                     Main.printMessage("API ready...");
                 } else {
