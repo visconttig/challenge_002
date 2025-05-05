@@ -16,8 +16,7 @@ public class Main {
                 amountToConvert = askNumber(sc);
                 printMessage(String.format("\t\tAmount to convert: %d.%n", amountToConvert));
                 /* Set currency pairs */
-                Currency currency = new Currency();
-                cConverter = new CurrencyConverter(currency);
+                cConverter = new CurrencyConverter("USD");
                 cConverter.getHttpValue();
                 /* Show currency valuation */
             } while (chosenOption != 7);

@@ -1,10 +1,16 @@
 public class Currency {
+    private String time_last_update_utc;
     private String base_code;
     private String target_code;
-    double conversion_rate;
+    Object conversion_rates;
+
 
     public Currency(){
         this("USD", "CLP");
+    }
+
+    public Currency(String base_code){
+        this(base_code, "CLP");
     }
 
 
@@ -21,8 +27,12 @@ public class Currency {
         return target_code;
     }
 
-    public double getConversionRate(){
-        return conversion_rate;
+//    public double getConversionRate(){
+    //
+//    }
+
+    public Object getConversionRates(){
+        return conversion_rates;
     }
 
     public void setBaseCode(String base_code){
@@ -31,5 +41,19 @@ public class Currency {
 
     public void setTargetCode(String target_code){
         this.target_code = target_code;
+    }
+
+    public void setConversionRates(Object conversion_rates){
+        this.conversion_rates = conversion_rates;
+    }
+
+    @Override
+    public String toString() {
+        return "Currency: \n" +
+                "\ntime_last_update=" + time_last_update_utc +
+                "\nbase_code='" + base_code + '\'' +
+                ", \ntarget_code='" + target_code + '\'' +
+                "\nconversion_rates= " + conversion_rates +
+                '.';
     }
 }
