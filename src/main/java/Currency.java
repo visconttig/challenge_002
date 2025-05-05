@@ -1,8 +1,12 @@
+import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Currency {
     private String time_last_update_utc;
     private String base_code;
     private String target_code;
-    Object conversion_rates;
+    Map<String, Double> conversion_rates;
 
 
     public Currency(){
@@ -43,17 +47,12 @@ public class Currency {
         this.target_code = target_code;
     }
 
-    public void setConversionRates(Object conversion_rates){
+    public void setConversionRates(Map<String, Double> conversion_rates){
         this.conversion_rates = conversion_rates;
     }
 
     @Override
     public String toString() {
-        return "Currency: \n" +
-                "\ntime_last_update=" + time_last_update_utc +
-                "\nbase_code='" + base_code + '\'' +
-                ", \ntarget_code='" + target_code + '\'' +
-                "\nconversion_rates= " + conversion_rates +
-                '.';
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 }

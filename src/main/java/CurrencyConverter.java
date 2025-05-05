@@ -54,7 +54,7 @@ public class CurrencyConverter {
                         .uri(url).build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-                Gson gson1 = new GsonBuilder().setPrettyPrinting().disableJdkUnsafe().create();
+                Gson gson1 = new GsonBuilder().setPrettyPrinting().create();
                 currency = gson1.fromJson(response.body(), Currency.class);
                 System.out.println(currency);
 
