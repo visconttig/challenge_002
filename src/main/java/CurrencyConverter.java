@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class CurrencyConverter {
-    Currency currency;
+    private Currency currency;
     Gson gson;
 
         public CurrencyConverter(){
@@ -16,7 +16,11 @@ public class CurrencyConverter {
         }
 
        public CurrencyConverter(String base_code){
-            currency = new Currency(base_code);
+            this(base_code, "CLP");
+       }
+
+       public CurrencyConverter(String base_code, String target_code){
+            currency = new Currency(base_code, target_code);
             gson = new Gson();
        }
 
@@ -54,11 +58,14 @@ public class CurrencyConverter {
                         .uri(url).build();
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+
+                String target = currency.getTargetCode();
                 Gson gson1 = new GsonBuilder().setPrettyPrinting().create();
                 currency = gson1.fromJson(response.body(), Currency.class);
-                System.out.println(currency);
+                currency.setTargetCode(target);
 
 
+                Main.printMessage(String.format("Conversion rate %s: %.2f.%n", currency.getTargetCode(), currency.getConversionRate(currency.getTargetCode())));
 
             } catch (IOException | InterruptedException e){
                 Main.printMessage(String.format("An error ocurred: %s.%n", e));

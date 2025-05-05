@@ -31,11 +31,11 @@ public class Currency {
         return target_code;
     }
 
-//    public double getConversionRate(){
-    //
-//    }
+    public double getConversionRate(String target_code){
+        return conversion_rates.get(target_code);
+    }
 
-    public Object getConversionRates(){
+    public Map<String, Double> getConversionRates(){
         return conversion_rates;
     }
 
