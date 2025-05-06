@@ -32,6 +32,9 @@ public class Currency {
     }
 
     public double getConversionRate(String target_code){
+        if((conversion_rates == null) || !(conversion_rates.containsKey(target_code))){
+            throw new IllegalArgumentException(String.format("Conversion rate for %s not available.", target_code));
+        }
         return conversion_rates.get(target_code);
     }
 

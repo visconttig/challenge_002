@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -6,6 +8,17 @@ public class Main {
         int chosenOption = 0;
         int amountToConvert = 0;
         CurrencyConverter cConverter;
+        /*
+                                        "%n1) Dolar =>> Argentinian Peso%n" +
+                                         "2) Argentinian Peso =>> Dolar%n" +
+                                         "3) Dolar =>> Brazilian Royal%n" +
+                                         "4) Brazilian Royal =>> Dolar%n" +
+                                         "5) Dolar =>> Colombian Peso%n" +
+                                         "6) Colombian Peso =>> Dolar%n" +
+                                         "7) Exit %n%n" +
+         */
+
+
 
 
         try (Scanner sc = new Scanner(System.in)) {
@@ -16,9 +29,8 @@ public class Main {
                 amountToConvert = askNumber(sc);
                 printMessage(String.format("\t\tAmount to convert: %d.%n", amountToConvert));
                 /* Set currency pairs */
-                cConverter = new CurrencyConverter("USD", "EUR");
-                cConverter.getHttpValue();
-                /* Show currency valuation */
+                cConverter = new CurrencyConverter();
+                cConverter.getExchange("USD", "EUR", 10);
             } while (chosenOption != 7);
         } catch (IOException e){
             printMessage(String.format("An error ocurred: %s.%n", e.getMessage()));
@@ -32,8 +44,8 @@ public class Main {
                                          "*** Welcome to the Currency Converter App! ***%n" +
                                          "%n1) Dolar =>> Argentinian Peso%n" +
                                          "2) Argentinian Peso =>> Dolar%n" +
-                                         "3) Dolar =>> Brazilian Royal%n" +
-                                         "4) Brazilian Royal =>> Dolar%n" +
+                                         "3) Dolar =>> Brazilian Real%n" +
+                                         "4) Brazilian Real =>> Dolar%n" +
                                          "5) Dolar =>> Colombian Peso%n" +
                                          "6) Colombian Peso =>> Dolar%n" +
                                          "7) Exit %n%n" +
