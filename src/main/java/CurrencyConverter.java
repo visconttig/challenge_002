@@ -4,17 +4,29 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class CurrencyConverter {
     private Currency currency;
     Gson gson;
+    Map<String, String> currencyNames = new HashMap<>();
+
 
 
        public CurrencyConverter(){
             currency = new Currency();
             gson = new GsonBuilder().setPrettyPrinting().create();
+            currencyNames.put("ARS", "Argentinian Peso");
+            currencyNames.put("BOB", "Bolivian Peso");
+            currencyNames.put("BRL", "Brazilian Real");
+            currencyNames.put("CLP", "Chilean Peso");
+            currencyNames.put("COP", "Colombian Peso");
+            currencyNames.put("USD", "U.S. Dollar");
        }
 
 
@@ -68,8 +80,29 @@ public class CurrencyConverter {
             double exchangeRate = getHttpExchangeRate(base_code).getConversionRate(target_code);
             currency.setTargetCode(target_code);
 
-            Main.printMessage(String.format("%d %s are $ %.2f %s.%n", amountToConvert, base_code, (amountToConvert * exchangeRate), target_code));
+            double convertedValue = amountToConvert * exchangeRate;
 
+            Main.printMessage(String.format("%d %s%s %s $ %.4f %s%s.%n",
+                                            amountToConvert,
+                                            currencyNames.get(base_code),
+                                            getPluralS(amountToConvert),
+                                            getArticle(amountToConvert),
+                                            convertedValue,
+                                            currencyNames.get(target_code),
+                                            getPluralS(convertedValue)));
+
+       }
+
+       private boolean getIsPlural(double amount){
+           return (amount != 1) ;
+       }
+
+       private String getPluralS(double amount){
+           return getIsPlural(amount) ? ("s") : ("");
+       }
+
+       private String getArticle(double amount){
+           return getIsPlural(amount) ? ("are") : ("is");
        }
 
 }
