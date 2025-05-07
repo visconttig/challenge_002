@@ -39,6 +39,10 @@ public class Main {
     }
 
     public static int askNumber(Scanner sc) throws IOException {
+        while (!(sc.hasNextInt())){
+            printMessage("Please, enter a valid number: ");
+            sc.next();
+        }
         return sc.nextInt();
     }
 

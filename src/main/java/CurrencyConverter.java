@@ -81,15 +81,15 @@ public class CurrencyConverter {
             currency.setTargetCode(target_code);
 
             double convertedValue = amountToConvert * exchangeRate;
-
-            Main.printMessage(String.format("%d %s%s %s $ %.4f %s%s.%n",
-                                            amountToConvert,
-                                            currencyNames.get(base_code),
-                                            getPluralS(amountToConvert),
-                                            getArticle(amountToConvert),
-                                            convertedValue,
-                                            currencyNames.get(target_code),
-                                            getPluralS(convertedValue)));
+            String message = String.format("%,d %s%s %s $ %,.4f %s%s.%n",
+                                           amountToConvert,
+                                           currencyNames.get(base_code),
+                                           getPluralS(amountToConvert),
+                                           getArticle(amountToConvert),
+                                           convertedValue,
+                                           currencyNames.get(target_code),
+                                           getPluralS(convertedValue));
+            Main.printMessage(message);
 
        }
 
